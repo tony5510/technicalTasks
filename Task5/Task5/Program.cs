@@ -14,6 +14,7 @@ class Program
     private static int _bowlFoodAmmount;
 
     private static Stopwatch _stopwatch = new Stopwatch();
+    static object lock1 = new object();
 
     static void Main()
     {
@@ -61,29 +62,32 @@ class Program
     {
         _semaphore.WaitOne();
 
-        while (true)
+        if (_bowlFoodAmmount >= _foodPerCat)
         {
-            if (_bowlFoodAmmount >= _foodPerCat)
+
+            Console.WriteLine($"Кот #{i + 1} подошел к миске и начал кушать.");
+            Thread.Sleep(3000);
+            lock (lock1)
             {
                 _bowlFoodAmmount -= _foodPerCat;
-                Console.WriteLine($"Кот #{i + 1} подошел к миске.");
-                Thread.Sleep(3000);
                 Console.WriteLine($"Кот #{i + 1} наелся и отошел от миски.");
-                _semaphore.Release();
 
 
                 if (_bowlFoodAmmount < _foodPerCat)
                 {
+                    Console.WriteLine("Бабушка пополняет миску. Котики должны подождать.");
                     _bowlFoodAmmount = _capacityOfTheBowl;
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Миска пополнена.");
                 }
+            }
 
-                if (Interlocked.Decrement(ref _catsAmmount) == 0)
-                {
-                    _stopwatch.Stop();
-                    Console.WriteLine($"Все котики накормлены за {_stopwatch.Elapsed.TotalSeconds} с.");
-                }
+            _semaphore.Release();
 
-                break;
+            if (Interlocked.Decrement(ref _catsAmmount) == 0)
+            {
+                _stopwatch.Stop();
+                Console.WriteLine($"Все котики накормлены за {_stopwatch.Elapsed.TotalSeconds} с.");
             }
         }
     }
