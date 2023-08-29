@@ -61,34 +61,39 @@ class Program
     static void Eat(int i)
     {
         _semaphore.WaitOne();
-
-        if (_bowlFoodAmmount >= _foodPerCat)
+        while (true)
         {
-
-            Console.WriteLine($"Кот #{i + 1} подошел к миске и начал кушать.");
-            Thread.Sleep(3000);
-            lock (lock1)
+            if (_bowlFoodAmmount >= _foodPerCat)
             {
-                _bowlFoodAmmount -= _foodPerCat;
-                Console.WriteLine($"Кот #{i + 1} наелся и отошел от миски.");
 
-
-                if (_bowlFoodAmmount < _foodPerCat)
+                Console.WriteLine($"Кот #{i + 1} подошел к миске и начал кушать.");
+                Thread.Sleep(3000);
+                lock (lock1)
                 {
-                    Console.WriteLine("Бабушка пополняет миску. Котики должны подождать.");
-                    _bowlFoodAmmount = _capacityOfTheBowl;
-                    Thread.Sleep(1000);
-                    Console.WriteLine("Миска пополнена.");
+                    _bowlFoodAmmount -= _foodPerCat;
+                    Console.WriteLine($"Кот #{i + 1} наелся и отошел от миски.");
+
+
+                    if (_bowlFoodAmmount < _foodPerCat)
+                    {
+                        Console.WriteLine("Бабушка пополняет миску. Котики должны подождать.");
+                        _bowlFoodAmmount = _capacityOfTheBowl;
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Миска пополнена.");
+                    }
                 }
-            }
 
-            _semaphore.Release();
+                _semaphore.Release();
 
-            if (Interlocked.Decrement(ref _catsAmmount) == 0)
-            {
-                _stopwatch.Stop();
-                Console.WriteLine($"Все котики накормлены за {_stopwatch.Elapsed.TotalSeconds} с.");
+                if (Interlocked.Decrement(ref _catsAmmount) == 0)
+                {
+                    _stopwatch.Stop();
+                    Console.WriteLine($"Все котики накормлены за {_stopwatch.Elapsed.TotalSeconds} с.");
+                }
+
+                break;
             }
         }
+        
     }
 }
