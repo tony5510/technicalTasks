@@ -1,0 +1,15 @@
+F:\CSharpTacks\Task4\Task4\bin\Debug\net6.0\Task4.exe
+F:\CSharpTacks\Task4\Task4\bin\Debug\net6.0\Task4.deps.json
+F:\CSharpTacks\Task4\Task4\bin\Debug\net6.0\Task4.runtimeconfig.json
+F:\CSharpTacks\Task4\Task4\bin\Debug\net6.0\Task4.dll
+F:\CSharpTacks\Task4\Task4\bin\Debug\net6.0\Task4.pdb
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.csproj.AssemblyReference.cache
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.GeneratedMSBuildEditorConfig.editorconfig
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.AssemblyInfoInputs.cache
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.AssemblyInfo.cs
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.csproj.CoreCompileInputs.cache
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.dll
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\refint\Task4.dll
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.pdb
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\Task4.genruntimeconfig.cache
+F:\CSharpTacks\Task4\Task4\obj\Debug\net6.0\ref\Task4.dll
